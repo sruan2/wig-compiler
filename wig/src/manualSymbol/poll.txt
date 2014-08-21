@@ -1,0 +1,17 @@
+Symbol Name		Type
+Setup			const html
+question		input name
+Form			const html
+answer			input name
+Chart			const html
+question		variable string
+yes			variable int
+no			variable int
+do_Init			function void
+q			variable string
+do_Poll			function void
+answer			variable string
+do_Result		function void
+Init			session
+Poll			session
+Result			session

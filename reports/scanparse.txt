@@ -1,0 +1,55 @@
+Group A Report for WiG Scanner/Parser
+
+By David Thibodeau, Shanshan Ruan, Ioannis Fytilis
+
+(1) WiG Scanner
+
+		Using Ocamllex, implementing most of the lexer was rather 
+	straightforward we were able to separate most tokens quite easily with 
+	the exception of the “meta” and “whatever” parts of the code. At 
+	that point, we realized that keyword stealing would be a problem 
+	because the “whatever” tokens could be any string not containing
+	the '<' or '>' characters and as such could incorrectly “steal” 
+	most of the code. Unlike other lexers such as Flex, incorporating
+	start conditions and the notion of state was rather complicated in
+	Ocamllex. Furthermore, there was a lack of online documentation which
+	is surprising because we had imagined that this would be a basic
+	concept for any lexer. Due to this, the lexer is currently less
+	straightforward than we had intended and, more importantly, we
+	spent a very considerable amount of time attempting to make that
+	specific feature work properly. To implement states, we created a
+	state reference and packed a function which would tell the parser
+	which rule to use to obtain the next token. This function appears
+	in the main.ml file.
+
+(2) WiG Parser and Abstract Syntax Tree
+
+		Similarly to what we had expected after implementing the Tiny compiler
+	in both C and Ocaml, writing a compiler in a functional programming
+	language allowed for a simple and clean implementation. At this
+	point, we stayed close to the original grammar but we plan
+	on simplifying some nodes (for instance schemas vs schema vs neschemas)
+	in order to, hopefully, make future parts of the compiler easier to implement. 
+	Our implementation does not support certain examples that do not match
+	the original grammar (such as missing const keyword when introducing
+	html pages, or the use of the keyword shared). We chose to not consider
+	them and to prefer the grammar that was provided for this part
+	of the project.
+
+(3) WiG Weeder
+
+		Currently, the weeder will check that a function ends with a return
+	statement and that a session calls an exit statement. Future work
+	for functions includes verifying whether all branches of a control
+	structure (if/else) eventually allow for a return statement to
+	occur, but to distinguish the case where the function is of type
+	void in which a return statement is optional. 
+
+(4) WiG Pretty Printer
+
+		We tested that pretty(parse(X)) == pretty(parse(pretty(parse(X))))
+	for some WiG programs, but we want to simplify this process by
+	adding scripts that would automatically perform this comparison.
+	This would allow us to quickly ensure that small changes in the
+	code do not have significant negative effects on the output, which
+	is rather difficult to quickly determine manually.

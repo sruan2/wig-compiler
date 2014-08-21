@@ -1,0 +1,4 @@
+#!/bin/sh
+gcc -I$WIGDIR/lib tinyA.c -o tinyA.cgi
+chmod 755 tinyA.cgi
+mv -f tinyA.cgi ~/public_html/cgi-bin

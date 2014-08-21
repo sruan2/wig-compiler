@@ -1,0 +1,4 @@
+#!/bin/sh
+gcc -I$WIGDIR/lib storyA.c -o storyA.cgi
+chmod 755 storyA.cgi
+mv -f storyA.cgi ~/public_html/cgi-bin

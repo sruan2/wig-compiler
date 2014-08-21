@@ -1,0 +1,17 @@
+/*ill-typed: + */
+
+service {
+  const html Nikolaj = <html> <body>
+     <img src="http://www.brics.dk/~mis/babybath.jpg">
+     <p>
+     <i>You are visitor number <[no]></i>
+  </body> </html>;
+
+  int counter;
+
+  session Access() {
+    /* well-typed: counter = counter + 1 */
+    counter = counter && 1;
+    exit plug Nikolaj[no = counter];
+  }
+}

@@ -1,0 +1,24 @@
+Symbol Name		Type
+ShowSchema1		const html
+ShowSchema2		const html
+ShowSchema3		const html
+PrintString		const html
+Done			const html
+Scm1			schema
+b			variable bool
+i			variable int
+s			variable string
+Scm2			schema
+b			varialbe bool
+i			variable int
+Scm3			schema
+b			variable bool
+s			variable string
+test1			session
+t1			tuple
+t2			tuple Scm1
+t3			tuple Scm2
+test2			session
+g1			tuple Scm1
+g2			tuple Scm2
+g3			tuple Scm3

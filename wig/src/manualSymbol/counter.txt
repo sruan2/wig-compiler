@@ -1,0 +1,5 @@
+Symbol Name		Type
+Nikolaj			const html
+no			embeded variable
+counter			variable int
+Access			session

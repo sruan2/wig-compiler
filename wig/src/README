@@ -1,0 +1,21 @@
+To run the compiler:
+
+First 'make' the executable main.native
+
+Then you may view all possible actions by running "./main.native -help"
+
+Here is a breakdown:
+
+You must always specify a file using "-f <file>" where <file> is the path to a WiG program
+
+-v will make some operations more verbose (in progress)
+-p will pretty-print the abstract syntax tree
+-w will weed out bad programs
+-s will print a symbol table of the program
+-t will typecheck the program
+-c will compile the program and generate a CGI file
+
+'make' will automatically perform a bunch of tests, but you can use these commands:
+'make code' to only compile
+'make check' to run all tests
+'make <test>' to run a specific test (pretty,weed,symbol...)

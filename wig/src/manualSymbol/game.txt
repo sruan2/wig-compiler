@@ -1,0 +1,29 @@
+Symbol Name		Type
+GetSeed			const html
+seed			input name
+GameSeeded		const html
+Init			const html
+guess			input name
+Retry			const html
+guess			input name
+Again			const html
+guess			input name
+Done			const html
+Record			const html
+name			input name
+Finish			const html
+List			const html
+plays			variable int
+record			variable int
+seed			variable int
+holder			variable string
+nextRandom		function int
+current			variable int
+Seed			session
+Play			session
+number			variable int
+guesses			variable int
+guess			variable int
+localholder		variable string
+HiScore			session
+

@@ -1,0 +1,202 @@
+Typecheck Report
+Group-a: David Thibodeau, Shanshan Ruan, Ioannis Fytilis
+
+(1) Types defined for WIG programs:
+
+    <1> Htmltp:
+    Htmltp is the type for html identifiers.
+
+    <2> Functp of (identifier * idtype) list * idtype:
+    Functp is the type for function identifiers, where idtype is the return type 
+    and (identifier * idtype) list is the type for a list of arguments that the 
+    function takes.
+
+    <3> Sessiontp:
+    Sessiontp is the type for session identifiers.
+
+    <4> Voidtp:
+    Voidtp is the type for empty function return (i.e. if the function returns
+    nothing, then the return type of this function is Voidtp)
+
+    <5> Inttp:
+    Inttp is the type for integers in wig programs.
+
+    <6> Booltp:
+    Booltp is the type for booleans in wig programs.
+
+    <7> Stringtp:
+    Stringtp is the type for strings in wig programs.
+
+    <8> Tupletp of (identifier * idtype) list:
+    Tupletp is the type for tuples in wig programs. More specifically, 
+    (identifier*idtype) represents each element in the tuple.
+
+    <9> Nonetp:
+    Nonetp is used to denote identifiers in HTML code
+
+
+(2) Typing rules for WIG programs:
+
+    We know from parsing that html part, schema part, and variable part are all
+well-formed, and they do not involve any type checking process. But we need to
+verify the soundness of types in function part and session part. In particular,
+we should type check each expression occurring in functions or sessions. 
+    We exhibit the set of typing rules specified in our type checker as follows:
+
+    <1> Expression-level rules:
+    These rules apply only to simpletypes and tupletypes and will assume no subtyping
+
+	LValue (lvalue: T) : T
+
+	LValueAssign (lvalue: T, exp: T) : T 
+		Allows Inttp/Booltp/Stringtp/Tupletp
+
+	Iseq (exp: T, exp: T) : Booltp
+		Allows Inttp/Booltp/Stringtp/Tupletp
+
+	Neq (exp: T, exp: T) : Booltp
+		Allows Inttp/Booltp/Stringtp/Tupletp
+
+	Le (exp: T, exp: T) : Booltp
+		Allows Inttp
+
+	Ge (exp: T, exp: T) : Booltp
+		Allows Inttp
+
+	Leq (exp: T, exp: T) : Booltp
+		Allows Inttp
+
+	Geq (exp: T, exp: T) : Booltp
+		Allows Inttp
+
+	Bang (exp: T) : T
+		Allows Booltp
+
+	Uminus (exp: T) : T
+		Allows Inttp
+
+	Plus (exp: T, exp: T) : T
+		Allows Inttp, Stringtp
+
+	Minus (exp: T, exp: T) : T
+		Allows Inttp
+
+	Mult (exp: T, exp: T) : T
+		Allows Inttp
+
+	Div (exp: T, exp: T) : T
+		Allows int
+
+	Mod (exp: T, exp: T) : T
+		Allows int
+
+	And (exp: T, exp: T) : T
+		Allows Booltp
+
+	Or (exp: T, exp: T) : T
+		Allows Booltp
+
+        Assign (exp1: T, exp2: T) : T
+                Allows tuple
+                provided for any (id,tp) in T of exp2, (id,tp) is in T of exp1
+
+        BplusId (exp: T, id) : Tupletp (id,tp) list
+                Allows T as tuple
+                provided (id,tp) occurs in T
+
+        BplusIds (exp: T, ids) : Tupletp (id,tp) list for all id in ids
+                Allows T as tuple
+                provided (id,tp) occurs in T for all id in ids
+
+        BplusId (exp: T, id) : Tupletp (id',tp') list for all id' in T but id
+                               is not equal to id'
+                Allows T as tuple
+                provided (id,tp) occurs in T
+
+        BplusIds (exp: T, ids) : Tupletp (id',tp') list for all id' in T but
+                                 id' is not in ids
+                Allows T as tuple
+                provided (id,tp) occurs in T for all id in ids
+
+        FunctionExp (id, exps) : T
+                provided id is of function type whose return type is T
+                and arguments types are T1, T2, ..., Tn
+                and exps have types T1, T2, ..., Tn
+
+        IntExp (intconst) : Inttp
+
+        BoolExp (boolconst) : Booltp
+   
+        StringExp (stringconst) : Stringtp
+
+        Tuple fieldvalues : Tupletp (id,tp) list
+                for all (id,tp) occur in fieldvalues
+
+        ParenExp (exp:T) : T
+                Allows Inttp/Booltp/Stringtp/Tupletp
+
+        TypedExp (exp:T, T) : T
+                Allows Inttp/Booltp/Stringtp/Tupletp
+
+    <2> Statement-level rules:
+
+        If a function has return type T, then the statement ReturnExp exp
+        inside such function should satisfy exp: T.
+
+        If a function has return type Voidtp, the it has a statement Returnvoid.
+
+        In the statement StmIfElse(exp, stm, stm), the expression exp has type
+        Booltp.
+
+        In the statement While(exp, stm), the expression exp has type Booltp.
+
+        In Document (id, plugs), id has type Htmltp.
+
+        In Receive inputs, for each (lvalue, identifier) occurs in inputs,
+        they must satisfy lvalue: T and identifier : T (i.e. they have the
+        same type)
+
+(3) Implementation:
+
+    Our typechecker takes an abstract syntax tree together with the entire
+symbol table built in previous phase as input, and recursively traverses
+the syntax tree to verifies the consistency in types based on typing rules
+defined above. 
+    Moreover, the type checker constructs a typed syntax tree as output 
+(we provide each expression with a type annotation). We also extend our pretty
+printer to achieve the printing of the typed syntax tree.
+    If any type error occurs, the type checker throws an error and the main
+program handles it properly. It prints out the ill-typed expression, 
+associated operator, current type, and expected type, which provides great 
+convenience for debugging.
+
+(4) Testing:
+    
+    We provide a variety of ill-typed wig programs in wig/examples/invalid-
+type-checking directory which can provoke different type error messages. The
+detailed remark is written as comments in each file.
+    Furthermore, to type check a single file, run ./main.native <filename> 
+typecheck. To observe all typed expressions, run ./main.native <filename> 
+prettytype. We also provide unit testing on a great number of examples.
+
+(5) Current Issues
+    Our unit tests need more 'bad' benchmarks that are meant to fail
+
+    The pretty-printer extension for type annotations is currently very 
+    difficult to read. It is of the format:
+        3 = 4 + 5 // normal printer
+        3 /* int */ = 4 /* int */ + 5 /* int */ /* int */    
+
+    As you can see, nested expressions such as 4+5 would ideally have a 
+    format such as (3 /* int */ + 4 /* int */) /* int */ but in this
+    current version of our compiler the parentheses are only implied. 
+    This makes it very difficult to read, but introducing parentheses
+    changes the AST if we continuously print-parse, thus breaking the
+    pretty(parse(x)) = pretty(parse(pretty(parse(x)))) property.
+
+    Later, we will introduce a different way of printing the type
+    annotations in a way that is much more intuitive. Also, the
+    pretty printer itself needs a "tab" system in order to make
+    it even more visually appealing
+    
+     

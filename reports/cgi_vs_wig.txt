@@ -1,0 +1,66 @@
+Group A Report
+
+Group A: David Thibodeau, Shanshan Ruan, Ioannis Fytilis
+
+
+(1) Potential difficulties:
+
+Due to the complexity of the WIG syntax, parsing part may be difficult when we actually 
+
+implement a compiler. In addition, we need to try the best to optimize the code to generate 
+
+concise and correct code. How to shorten the running time may also be an interesting question to 
+
+attempt.
+
+
+(2) Additional language features:
+
+Firstly, the present type system for WIG language is not comprehensive enough. We could 
+
+include more diverse and advanced types such as double, array, and so on to provide the user 
+
+with more convenience. Additionally, if the file pointer is supplied, then the user can have access 
+
+to files on servers and hence interact with some database. Moreover, we can also allow subtyping 
+
+to give the user more flexibility when specifying types.
+
+Secondly, it is advisable to supply more powerful expressions such as pattern matching, break 
+
+and continue, and so forth. This can assist the user in writing more advanced programs and 
+
+websites. 
+
+Thirdly, we can also consider providing both recursion functionality and termination checking to 
+
+some extent to permit the user to write recursive programs. However, verifying the termination 
+
+of the recursion always plays an important role in recursive functions as the output will keep 
+
+running permanently otherwise.
+
+Fourthly, we can provide support for more html tags as well as CSS styles. These can greatly 
+
+help the user write more beautiful websites and facilitate the web formatting.
+
+
+(3) Corresponding semantics:
+
+Firstly, we need to extend the syntax for types and build more complicated types based on 
+
+existing simple types.
+
+Secondly, the current statement syntax need to be expanded to include other kind of expressions 
+
+as described above.
+
+Thirdly, it may be difficult to provide the complete functionality, but we could impose some 
+
+restriction such as specifying the recursive object and the recursion principle to achieve 
+
+termination.
+
+Fourthly, we could simply extend the syntax for different attributes. To support CSS style, we 
+
+need to add new syntax categories and take account into precedence issue.

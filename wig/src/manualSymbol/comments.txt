@@ -1,0 +1,8 @@
+Symbol Name		Type
+Welcome			const html
+Plege			const html
+contribution		input name
+Total			const html
+amount			variable int
+Contribute		session
+i			variable int

@@ -1,0 +1,54 @@
+Group-a Report
+
+(1) We use Ocamllex and Menhir. The compilation command is
+ocamlbuild -use-menhir main.native
+
+Note that this requires both ocaml and menhir to be installed.
+Since the Trottier computers do not have menhir (and we lack the
+permission to install it) we'll assume that you have the power
+to install it and/or use your own machine.
+
+(2) This milestone is both stimulating and challenging. By 
+implementing the compilers in both C and OCaml, not only did 
+we have a lot of fun but we also understood the advantages and 
+drawbacks of each language choice better. Furthermore, GitHub 
+greatly assisted us in avoiding most merge conflicts and 
+facilitated our group coordination.
+
+(3) It would be interesting if the compiler can provide support 
+for float calculation.
+
+(4) Partial evaluations supported by our compilers:
+(We use 'a' to indicate identifiers and 1 to represent integers)
+
+Both a * 0 and 0 * a evaluate to 0
+Both a * 1 and 1 * a evaluate to a
+0 / a evaluates to 0
+a / 1 evaluates to a 
+0 ** a evaluates to 0
+a ** 0 evaluates to 1
+1 ** a evaluates to 1
+a ** 1 evaluates to a
+Both a + 0 and 0 + a evaluate to a
+a - 0 evaluates to a
+a + -1 evaluates to a - 1
+a - a evaluates to 0 (only in OCaml implementation)
+a / a evaluates to 1 (only in OCaml implementation)
+a % a evaluates to 0 (only in OCaml implementation)
+
+(5) Minimal parentheses
+
+When "prettyPrinting" an expression, a binary operator node (e)
+of the AST will wrap its child node (e1 or e2) in parentheses
+only if the child node has lesser precedence than (e). The only 
+special case is when the precedence is equal. We handle this case 
+differently depending on whether the operation defined by (e) is 
+left or right associative and on whether the child node is to the left
+or to the right.
+
+Because the addition and multiplication operators are 
+commutative, we also add a rule where an addition/multiplication node
+cannot wrap its left/right subtree in parentheses if that subtree is
+also defined by the same operation. For instance, [A / (B / C)] requires
+parentheses to keep its semantics but [A * (B * C)] can omit the parentheses
+without altering the value it evaluates to.

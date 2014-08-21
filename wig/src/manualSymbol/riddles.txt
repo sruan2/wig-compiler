@@ -1,0 +1,23 @@
+Symbol Name		Type
+Welcome			const html
+Pick			const html
+choice			input name
+Trials			const html
+Retry			const html
+choice			input name
+Riddle1			const html
+Riddle1Sol		const html
+Riddle2			const html
+Riddle2Sol		const html
+Riddle3			const html
+Riddle3Sol		const html
+Riddle4			const html
+Riddle4Sol		const html
+Riddle5			const html
+Riddle5Sol		const html
+Fin			const html
+choice			variable int
+Guess			session
+total			variable int
+i			variable int
+

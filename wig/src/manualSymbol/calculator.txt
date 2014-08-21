@@ -1,0 +1,15 @@
+Symbol Name		Type
+Setup			const html
+operator		input name
+int1			input name
+int2			input name
+Return			const html
+YorN			input name
+ByeBye			const html
+Ans			variable int
+Calculate		session
+YorN			variable string
+int1			variable int
+int2			variable int
+operator		variable string
+

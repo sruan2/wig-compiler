@@ -1,0 +1,125 @@
+BENCHMARK group-1 ./group-1 Main
+  compiling with javac -O                  (.java --> .class)
+Note: JoosImage.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: JoosImage.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+  disassembling with D-Java                (.class --> .j)
+  disassembling with D-Java                (.class --> .sj)
+  compiling with a-joos -O                 (.java --> .j)
+  assembling with jasmin                   (.j --> .class)
+  disassembling with D-Java                (.class --> .sj)
+  compiling with a+joos -O                 (.java --> .j)
+  assembling with jasmin                   (.j --> .class)
+  disassembling with D-Java                (.class --> .sj)
+  running javac-opt benchmark
+  running a-joos-opt benchmark
+  running a+joos-opt benchmark
+
+BENCHMARK group-2 ./group-2 AsciiFunArt
+  compiling with javac -O                  (.java --> .class)
+ImageConverter.java:21: warning: sun.awt.image.ToolkitImage is internal proprietary API and may be removed in a future release
+    bimg = ((ToolkitImage)icon.getImage()).getBufferedImage();
+             ^
+Note: ASCIIImage.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 warning
+ImageConverter.java:21: warning: sun.awt.image.ToolkitImage is internal proprietary API and may be removed in a future release
+    bimg = ((ToolkitImage)icon.getImage()).getBufferedImage();
+             ^
+Note: ASCIIImage.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+1 warning
+  disassembling with D-Java                (.class --> .j)
+  disassembling with D-Java                (.class --> .sj)
+  compiling with a-joos -O                 (.java --> .j)
+  assembling with jasmin                   (.j --> .class)
+  disassembling with D-Java                (.class --> .sj)
+  compiling with a+joos -O                 (.java --> .j)
+  assembling with jasmin                   (.j --> .class)
+  disassembling with D-Java                (.class --> .sj)
+  running javac-opt benchmark
+  running a-joos-opt benchmark
+  running a+joos-opt benchmark
+
+BENCHMARK group-3 ./group-3 Main
+  compiling with javac -O                  (.java --> .class)
+  disassembling with D-Java                (.class --> .j)
+  disassembling with D-Java                (.class --> .sj)
+  compiling with a-joos -O                 (.java --> .j)
+  assembling with jasmin                   (.j --> .class)
+  disassembling with D-Java                (.class --> .sj)
+  compiling with a+joos -O                 (.java --> .j)
+  assembling with jasmin                   (.j --> .class)
+  disassembling with D-Java                (.class --> .sj)
+  running javac-opt benchmark
+  running a-joos-opt benchmark
+  running a+joos-opt benchmark
+
+BENCHMARK group-4 ./group-4 Maze
+  compiling with javac -O                  (.java --> .class)
+Note: Maze.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: Maze.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+  disassembling with D-Java                (.class --> .j)
+  disassembling with D-Java                (.class --> .sj)
+  compiling with a-joos -O                 (.java --> .j)
+  assembling with jasmin                   (.j --> .class)
+  disassembling with D-Java                (.class --> .sj)
+  compiling with a+joos -O                 (.java --> .j)
+  assembling with jasmin                   (.j --> .class)
+  disassembling with D-Java                (.class --> .sj)
+  running javac-opt benchmark
+  running a-joos-opt benchmark
+  running a+joos-opt benchmark
+
+BENCHMARK group-5 ./group-5 Beep
+  compiling with javac -O                  (.java --> .class)
+Note: Dictionary.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: Dictionary.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+  disassembling with D-Java                (.class --> .j)
+  disassembling with D-Java                (.class --> .sj)
+  compiling with a-joos -O                 (.java --> .j)
+  assembling with jasmin                   (.j --> .class)
+  disassembling with D-Java                (.class --> .sj)
+  compiling with a+joos -O                 (.java --> .j)
+  assembling with jasmin                   (.j --> .class)
+  disassembling with D-Java                (.class --> .sj)
+  running javac-opt benchmark
+  running a-joos-opt benchmark
+  running a+joos-opt benchmark
+
+BENCHMARK group-6 ./group-6 Main
+  compiling with javac -O                  (.java --> .class)
+  disassembling with D-Java                (.class --> .j)
+  disassembling with D-Java                (.class --> .sj)
+  compiling with a-joos -O                 (.java --> .j)
+  assembling with jasmin                   (.j --> .class)
+  disassembling with D-Java                (.class --> .sj)
+  compiling with a+joos -O                 (.java --> .j)
+  assembling with jasmin                   (.j --> .class)
+  disassembling with D-Java                (.class --> .sj)
+  running javac-opt benchmark
+  running a-joos-opt benchmark
+  running a+joos-opt benchmark
+
+BENCHMARK group-7 ./group-7 GameCenter
+  compiling with javac -O                  (.java --> .class)
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+  disassembling with D-Java                (.class --> .j)
+  disassembling with D-Java                (.class --> .sj)
+  compiling with a-joos -O                 (.java --> .j)
+  assembling with jasmin                   (.j --> .class)
+  disassembling with D-Java                (.class --> .sj)
+  compiling with a+joos -O                 (.java --> .j)
+  assembling with jasmin                   (.j --> .class)
+  disassembling with D-Java                (.class --> .sj)
+  running javac-opt benchmark
+  running a-joos-opt benchmark
+  running a+joos-opt benchmark

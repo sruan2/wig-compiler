@@ -1,0 +1,14 @@
+Symbol Name		Type
+Init			const html
+man			input name
+Red			const html
+man			input name
+Blue			const html
+man			input name
+Green			const html
+man			input name
+Purple			const html
+man			input name
+End			const html
+Access			session
+man			variable int

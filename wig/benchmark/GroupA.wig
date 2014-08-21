@@ -1,0 +1,229 @@
+/* Group A: David Thibodeau, Sherry Ruan, Ioannis Fytilis  */
+/* Our WIG service can perform three types matrix calculation for any 3*3 matrix*/
+/* Determinant, transpose, and trace*/
+
+service {
+  /* The initial webpage: asking the user to enter a matrix */
+  const html Input = <html>
+                         <head>
+                             <title>Welcome to group-a's wig service</title>
+                         </head>
+                         <body bgcolor = "FFCCFF">
+                         <font face="arial" color="660066">
+                             <center><h1>Hello! Welcome to Our Wig Service</h1>
+                             <h2>We are here to help you do all matrix calculation!</h2><br><br>
+                             <table>
+			         <tr>
+			             <td colspan="2" align="center" valign="top"><h3> Please put your 3x3 int matrix here:</h3></td>
+			         </tr>
+			         <tr>
+			             <td><input type="text" name="a11"  size=10>
+			                 <input type="text" name="a12"  size=10>
+			                 <input type="text" name="a13"  size=10><br><br></td>
+			         </tr>
+			         <tr>
+			             <td><input type="text" name="a21"  size=10>
+			                 <input type="text" name="a22"  size=10>
+			                 <input type="text" name="a23"  size=10><br><br></td>
+			         </tr>
+			         <tr>
+			             <td><input type="text" name="a31"  size=10>
+			                 <input type="text" name="a32"  size=10>
+			                 <input type="text" name="a33"  size=10><br><br></td>
+			         </tr>
+		             </table>
+		             <p><font color = "black">Please select the type of calculation you want to perform:</font>
+		                 <select name="from" size="1">
+	                             <option value="det">Determinant</option>
+	                             <option value="tra">Trace</option>
+	                             <option value="tran">Transpose</option>
+	                         </select> <br><br>
+	                     </p>
+	                     <p><input type="radio" name="quit" value="1"><font color="003333">Exit the service</font></p>
+                             <i>Copyright @ Group A: David Thibodeau, Sherry Ruan, Ioannis Fytilis </i><br>
+                             <i>Last Update: September 28 2013</i></center>           
+                         </font>          
+                         </body>
+                     </html>;
+                  
+     
+  /* This webpage displays the determinant */                    
+  const html Det = <html>
+                       <head>
+                           <title>Determinant</title>
+                       </head>
+                       <body bgcolor = "FFCCFF">
+                         <font face="arial" color="660066">
+                             <center><h1>Hello! Welcome to Our Wig Service</h1>
+                             <h2>We are here to help you do all matrix calculation!</h2><br><br>
+                             <table>
+			         <tr>
+			             <td colspan="2" align="center" valign="top"><h3> The matrix you entered is:</h3></td>
+			         </tr>
+			         <tr>
+			             <td><[a11]></td>
+			             <td><[a12]></td>
+			             <td><[a13]></td>
+			         </tr>
+			         <tr>
+			             <td><[a21]></td>
+			             <td><[a22]></td>
+			             <td><[a23]></td>
+			         </tr>
+			         <tr>
+			             <td><[a31]></td>
+			             <td><[a32]></td>
+			             <td><[a33]></td>
+			         </tr>
+		             </table>
+		             
+		             <h3><font color = "black">The determinant is: <[det]></font></h3><br>
+		             
+		             <p><font color = "black">Please select other type of calculation you want to perform:</font>
+		                 <select name="from" size="1">
+	                             <option value="det">Determinant</option>
+	                             <option value="tra">Trace</option>
+	                             <option value="tran">Transpose</option>
+	                         </select> <br><br>
+	                     </p>
+	                     <p><input type="radio" name="reset" value="1"><font color="003333">Enter a new matrix</font></p>
+	                     <p><input type="radio" name="quit" value="1"><font color="003333">Exit the service</font></p>
+                        
+                             <i>Copyright @ Group A: David Thibodeau, Sherry Ruan, Ioannis Fytilis </i><br>
+                             <i>Last Update: September 28 2013</i></center>           
+                         </font>        
+                         </body>
+                     </html>;
+                     
+/* This webpage displays the trace */                    
+  const html Tra = <html>
+                       <head>
+                           <title>Determinant</title>
+                       </head>
+                       <body bgcolor = "FFCCFF">
+                           <font face="arial" color="660066">
+                             <center><h1>Hello! Welcome to Our Wig Service</h1>
+                             <h2>We are here to help you do all matrix calculation!</h2><br><br>
+                             <table>
+			         <tr>
+			             <td colspan="2" align="center" valign="top"><h3>The matrix you entered is:</h3></td>
+			         </tr>
+			         <tr>
+			             <td><[a11]></td>
+			             <td><[a12]></td>
+			             <td><[a13]></td>
+			         </tr>
+			         <tr>
+			             <td><[a21]></td>
+			             <td><[a22]></td>
+			             <td><[a23]></td>
+			         </tr>
+			         <tr>
+			             <td><[a31]></td>
+			             <td><[a32]></td>
+			             <td><[a33]></td>
+			         </tr>
+		             </table>
+		             <h3><font color = "black">The trace is: <[tra]></font></h3><br>
+		             <p><font color = "black">Please select other type of calculation you want to perform:</font>
+		                 <select name="from" size="1">
+	                             <option value="det">Determinant</option>
+	                             <option value="tra">Trace</option>
+	                             <option value="tran">Transpose</option>
+	                         </select> <br><br>
+	                     </p>
+	                     <p><input type="radio" name="reset" value="1"><font color="003333">Enter a new matrix</font></p>
+	                     <p><input type="radio" name="quit" value="1"><font color="003333">Exit the service</font></p>
+                             <i>Copyright @ Group A: David Thibodeau, Sherry Ruan, Ioannis Fytilis </i><br>
+                             <i>Last Update: September 28 2013</i></center>           
+                         </font>        
+                         </body>
+                     </html>;    
+                     
+/* This webpage displays the transpose */                    
+  const html Tran = <html>
+                       <head>
+                           <title>Determinant</title>
+                       </head>
+                       <body bgcolor = "FFCCFF">
+                         <font face="arial" color="660066">
+                             <center><h1>Hello! Welcome to Our Wig Service</h1>
+                             <h2>We are here to help you do all matrix calculation!</h2><br><br>
+		             <table>
+			         <tr>
+			             <td colspan="2" align="center" valign="top"><h3> The transpose matrix is:</h3></td>
+			         </tr>
+			         <tr>
+			             <td><[a11]></td>
+			             <td><[a21]></td>
+			             <td><[a31]></td>
+			         </tr>
+			         <tr>
+			             <td><[a12]></td>
+			             <td><[a22]></td>
+			             <td><[a32]></td>
+			         </tr>
+			         <tr>
+			             <td><[a13]></td>
+			             <td><[a23]></td>
+			             <td><[a33]></td>
+			         </tr>
+		             </table>
+		             <p><font color = "black">Please select other type of calculation you want to perform:</font>
+		                 <select name="from" size="1">
+	                             <option value="det">Determinant</option>
+	                             <option value="tra">Trace</option>
+	                             <option value="tran">Transpose</option>
+	                         </select> <br><br>
+	                     </p>
+	                     <p><input type="radio" name="reset" value="1"><font color="003333">Enter a new matrix</font></p>
+	                     <p><input type="radio" name="quit" value="1"><font color="003333">Exit the service</font></p>
+                             <i>Copyright @ Group A: David Thibodeau, Sherry Ruan, Ioannis Fytilis </i><br>
+                             <i>Last Update: September 28 2013</i></center>           
+                         </font>           
+                         </body>
+                     </html>;             
+  
+  /* The finish page will be displayed if the quit button is selected */                   
+  const html Finish = <html>
+                          <body bgcolor = "FFCCFF">
+                          <center><font face = "arial" color = "660066">
+                              <h1>Thanks for the use. Hope you like our WIG service! </h1>
+                              <i>Copyright @ Group A: David Thibodeau, Sherry Ruan, Ioannis Fytilis </i><br>
+                              <i>Last Update: September 28 2013</i>        
+                          </font></center>
+                          </body> 
+                      </html>;    
+
+ /* Start session */
+  session Start( ) {
+    int a11, a12, a13, a21, a22, a23, a31, a32, a33;
+    int det, tra;
+    int quit, reset;
+    string from;
+    quit = 0;
+    reset = 1;
+
+    while(quit!=1){
+                        /* If the "enter new matrix" radio button is selected, then show the new input webpage */
+                        if (reset == 1){
+			    show Input receive[a11=a11, a12=a12, a13=a13, a21=a21, a22=a22, a23=a23, a31=a31, a32=a32, a33=a33, from=from, quit=quit];
+			    reset = 0;
+			}
+		        else{
+			    if (from == "det"){
+			        det = a11*a22*a33 + a12*a23*a31 + a13*a21*a32 - a13*a22*a31 - a12*a21*a33 - a11*a23*a32;
+				show plug Det[a11=a11, a12=a12, a13=a13, a21=a21, a22=a22, a23=a23, a31=a31, a32=a32, a33=a33, det=det] receive[quit=quit, from=from, reset=reset];
+			    }
+			    if (from == "tran"){
+			       show plug Tran[a11=a11, a12=a12, a13=a13, a21=a21, a22=a22, a23=a23, a31=a31, a32=a32, a33=a33] receive[quit=quit, from=from, reset=reset];
+			    }
+			    if (from == "tra"){
+			       tra = a11 + a22 + a33;
+			       show plug Tra[a11=a11, a12=a12, a13=a13, a21=a21, a22=a22, a23=a23, a31=a31, a32=a32, a33=a33, tra=tra] receive[quit=quit, from=from, reset=reset];
+			    }
+		       }
+    }
+    exit Finish;
+  }
+}

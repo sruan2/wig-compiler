@@ -1,0 +1,20 @@
+Symbol Name		Type
+Login			const html
+username		input name
+password		input name
+incorrect		const html
+Update			const html
+msg			input name
+quit			input name
+Byebye			const html
+msgo			variable string
+msg1			variable string
+msg2			variable string
+connections		variable int
+Talk			session 
+username		variable string
+password		variable string
+msg			variable string
+quit			variable string
+written			variable int
+correct			variable bool

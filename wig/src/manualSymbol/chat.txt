@@ -1,0 +1,20 @@
+Symbol Name		Type
+Logon			const html
+name			input name
+Update			const html
+msg			input name
+quit			input name
+ByeBye			const html
+msg0			variable string
+msg1			variable string
+msg2			variable string
+msg3			variable string
+msg4			variable string
+msg5			variable string
+Chat			session
+name			variable string
+msg			variable string
+quit			variable string
+connections		variable int
+written			variable int
+

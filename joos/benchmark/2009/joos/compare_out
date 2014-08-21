@@ -1,0 +1,14 @@
+#!/bin/bash
+
+for i in ./group-*
+do
+	for j in $i/*classes/out.*
+	do
+		if test -f $j 
+		then
+			diff $i/out1 $j
+		fi
+	done
+done
+echo "No output? Then all is well!"
+

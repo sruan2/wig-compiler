@@ -1,0 +1,59 @@
+We created symbol.ml that defines the kinds of identifiers we have, together
+with the construction of a symbol table for each of the different scopes
+inside the program.
+
+The kinds are defined by the datatype symboltype. The different kinds are
+HtmlSymbol that defined html pages, bodyVarSymbol that defined the variables
+inside html pages that will be used when invoking the page, BodyTagSymbol that
+defined names of input retrieved from the html pages, SchemaSymbol and
+FieldSymbol representing schemas and the fields it contains, respectively,
+VarSymbol representing variables, and FuncSymbol and SessionSymbol representing
+function and session names, respectively.
+
+The implementation first creates a global stack of hashtables that will be used
+to maintain scope. We defined the helper functions inside the definition of
+symbolTable in order to let them have direct access to this stack without
+having to pass it around. All the identifier definitions are added to the
+top level stack. We abstracted the operations of pushing, popping, lookup,
+to simplify sequencing of usual operations. Since the grammar is sufficiently
+explicit, the lookup asks for an identifier of the right kind which is provided
+if found.
+
+We also do several checks such as if the field of tuple actually exists in
+the corresponding schema or if the substitution of text for variables, or from
+user input to variables when plugging, or retrieving from html code,
+respectively, is applied. Other tests such that the correct definition of a
+tuple with respect to its schema is postponed to the type checking phase
+since we don't directly have access to its type.
+
+The functions and sessions are added in two passes. The first pass only
+considers their names and add them to the environment. The second pass
+evaluates their bodies and creates inner level scopes. Inside the body of
+functions, new scopes are defined only when we encounter a compound stm.
+
+Inside html code, we allow multiple appearance of bracked tags (identifiers
+of the form <[id]>), but only one use of a name of an input field.
+
+Our implementation prints the symbol tables together with the level in which
+each table exist to allow us to have a global view of the scope of each
+variable. In addition, the symbol table from the html forms and schemas, and the
+type of variables, is printed as they are carried around.
+
+NOTE ON PROGRESS: 
+As of midnight on the day of submission, there are still some issues that
+need some more work. 
+
+First, the method by which we print the symbol tables
+at each scope is not visually appealing. Not only are they shown in
+reverse-order, but they are rather verbose and don't yet contain the notion
+of a line-number, which would certainly help. 
+
+Second, we attempted to perform static analysis to determine whether 
+variables were referenced before being assigned a value but that turned out
+to be very difficult at compile-time due to the fact that a function may, for
+instance, assume that a variable it is using will be assigned in a certain 
+Session. There are also a few inconsistencies between some assumptions that
+different example files choose to follow. 
+
+Although unit testing has not been implemented yet for the symbol tables,
+some examples such as game.wig or factorial.wig work.

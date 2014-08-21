@@ -1,0 +1,171 @@
+service : "service" "{" htmls schemas nevariables functions sessions "}" /* NEW */
+        | "service" "{" htmls schemas functions sessions "}"             /* NEW */
+;
+
+htmls : html | htmls html
+;
+html : "const" "html" identifier "=" "<html>" nehtmlbodies "</html>" ";" /* NEW */
+     | "const" "html" identifier "=" "<html>" "</html>" ";"              /* NEW */
+;
+nehtmlbodies : htmlbody | nehtmlbodies htmlbody
+;
+htmlbody : "<" identifier attributes ">"
+         | "</" identifier ">"
+         | "<[" identifier "]>"
+         | whatever
+         | meta
+         | "<" "input" inputattrs ">"
+         | "<" "select" inputattrs ">" nehtmlbodies "</" "select" ">" /* NEW */
+         | "<" "select" inputattrs ">" "</" "select" ">"              /* NEW */
+;
+inputattrs : inputattr | inputattrs inputattr
+;
+inputattr : "name" "=" attr
+          | "type" "=" inputtype
+          | attribute
+;
+inputtype : "text" | "radio"
+;
+attributes : /* empty */ | neattributes
+;
+neattributes : attribute | neattributes attribute
+;
+attribute : attr | attr "=" attr
+;
+attr : identifier | stringconst
+;
+
+schemas: /* empty */ | neschemas
+;
+neschemas: schema | neschemas schema
+;
+schema : "schema" identifier "{" fields "}"
+;
+fields : /* empty */ | nefields
+;
+nefields : field | nefields field
+;
+field : simpletype identifier ";"
+;
+
+/* NEW: variables production deleted */
+nevariables : variable | nevariables variable 
+;
+variable : type identifiers ";"
+;
+identifiers : identifier | identifiers "," identifier
+;
+
+simpletype : "int" | "bool" | "string" | "void"
+;
+type : simpletype | "tuple" identifier
+;
+
+functions : /* empty */ | nefunctions
+;
+nefunctions : function | nefunctions function
+;
+function : type identifier "(" arguments ")" compoundstm
+;
+arguments : /* empty */ | nearguments
+;
+nearguments : argument | nearguments "," argument
+;
+argument : type identifier
+;
+
+sessions : session | sessions session
+;
+session : "session" identifier "(" ")" compoundstm
+;
+
+stms : /* empty */ | nestms
+;
+nestms : stm | nestms stm
+;
+stm : ";"
+    | "show" document receive ";"
+    | "exit" document ";"
+    | "return" ";"
+    | "return" exp ";"
+    | "if" "(" exp ")" stm
+    | "if" "(" exp ")" stm "else" stm
+    | "while" "(" exp ")" stm
+    | compoundstm
+    | exp ";"
+;
+document : identifier 
+         | "plug" identifier "[" plugs "]"
+;
+receive : /* empty */
+        | "receive" "[" inputs "]"
+;
+compoundstm : "{" nevariables stms "}" /* NEW */
+            | "{" stms "}"             /* NEW */
+;
+plugs : plug | plugs "," plug
+;
+plug : identifier "=" exp
+;
+inputs : /* empty */ | neinputs
+;
+neinputs : input | neinputs "," input
+;
+input : lvalue "=" identifier
+;
+
+exp : lvalue
+    | lvalue "=" exp
+    | exp "==" exp
+    | exp "!=" exp
+    | exp "<" exp
+    | exp ">" exp
+    | exp "<=" exp
+    | exp ">=" exp
+    | "!" exp
+    | "-" exp
+    | exp "+" exp
+    | exp "-" exp
+    | exp "*" exp
+    | exp "/" exp
+    | exp "%" exp
+    | exp "&&" exp
+    | exp "||" exp
+    | exp "<<" exp
+    | exp "\+" identifier          /* NEW */
+    | exp "\+" "(" identifiers ")" /* NEW */
+    | exp "\-" identifier          /* NEW */
+    | exp "\-" "(" identifiers ")" /* NEW */
+    | identifier "(" exps ")"
+    | intconst
+    | "true"
+    | "false"
+    | stringconst
+    | "tuple" "{" fieldvalues "}"
+    | "(" exp ")"                  /* NEW */
+;
+exps : /* empty */ | neexps
+;
+neexps : exp | neexps "," exp
+;
+lvalue : identifier | identifier "." identifier
+;
+fieldvalues : /* empty */ | nefieldvalues
+;
+nefieldvalues : fieldvalue | fieldvalues "," fieldvalue
+;
+fieldvalue : identifier "=" exp
+;
+
+TOKENS:
+
+identifier : usual identifiers
+;
+intconst : usual integer constants
+;
+stringconst : usual string constants
+;
+meta : any string of the form <!-- ... -->
+;
+whatever : any string not containing < or >
+;
