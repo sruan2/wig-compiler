@@ -1,0 +1,3 @@
+*.html linguist-language=OCaml
+*.java linguist-language=OCaml
+
